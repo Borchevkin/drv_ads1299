@@ -1,6 +1,8 @@
 #ifndef DRV_ADS1299_ADS1299_H_
 #define DRV_ADS1299_ADS1299_H_
 
+#include <stdint.h>
+
 /* ____________________ DEFINE Section ____________________ */
 /* Register addresses */
 #define ADS1299_ID_REG                  (0x00)
@@ -43,5 +45,194 @@
 /* ________________________________________________________ */
 
 /* ____________________ Types  Section ____________________ */
+
+typedef struct {
+	uint8_t revId;
+	uint8_t devId;
+	uint8_t nuCh;
+} id_t;
+
+typedef struct {
+	uint8_t daisyEn;
+	uint8_t clkEn;
+	uint8_t dataRate;
+} config1_t;
+
+typedef struct {
+	uint8_t intCal;
+	uint8_t calAmp;
+	uint8_t calFreq;
+} config2_t;
+
+typedef struct {
+	uint8_t pdRefBuf;
+	uint8_t biasMeas;
+	uint8_t biasRefInt;
+	uint8_t pdBias;
+	uint8_t biasLoffSens;
+	uint8_t biasStat;
+} config3_t;
+
+typedef struct {
+	uint8_t compTh;
+	uint8_t ileadOff;
+	uint8_t fleadOff;
+} loff_t;
+
+typedef struct {
+	uint8_t pdN;
+	uint8_t gainN;
+	uint8_t srb2;
+	uint8_t muxN;
+} chnset_t;
+
+typedef struct {
+	uint8_t biasP8;
+	uint8_t biasP7;
+	uint8_t biasP6;
+	uint8_t biasP5;
+	uint8_t biasP4;
+	uint8_t biasP3;
+	uint8_t biasP2;
+	uint8_t biasP1;
+} biassensp_t;
+
+typedef struct {
+	uint8_t biasN8;
+	uint8_t biasN7;
+	uint8_t biasN6;
+	uint8_t biasN5;
+	uint8_t biasN4;
+	uint8_t biasN3;
+	uint8_t biasN2;
+	uint8_t biasN1;
+} biassensn_t;
+
+typedef struct {
+	uint8_t loffP8;
+	uint8_t loffP7;
+	uint8_t loffP6;
+	uint8_t loffP5;
+	uint8_t loffP4;
+	uint8_t loffP3;
+	uint8_t loffP2;
+	uint8_t loffP1;
+} loffsensp_t;
+
+typedef struct {
+	uint8_t loffN8;
+	uint8_t loffN7;
+	uint8_t loffN6;
+	uint8_t loffN5;
+	uint8_t loffN4;
+	uint8_t loffN3;
+	uint8_t loffN2;
+	uint8_t loffN1;
+} loffsensn_t;
+
+typedef struct {
+	uint8_t loffFlip8;
+	uint8_t loffFlip7;
+	uint8_t loffFlip6;
+	uint8_t loffFlip5;
+	uint8_t loffFlip4;
+	uint8_t loffFlip3;
+	uint8_t loffFlip2;
+	uint8_t loffFlip1;
+} loffflip_t;
+
+typedef struct {
+	uint8_t in8pOff;
+	uint8_t in7pOff;
+	uint8_t in6pOff;
+	uint8_t in5pOff;
+	uint8_t in4pOff;
+	uint8_t in3pOff;
+	uint8_t in2pOff;
+	uint8_t in1pOff;
+} loffstatp_t;
+
+typedef struct {
+	uint8_t in8nOff;
+	uint8_t in7nOff;
+	uint8_t in6nOff;
+	uint8_t in5nOff;
+	uint8_t in4nOff;
+	uint8_t in3nOff;
+	uint8_t in2nOff;
+	uint8_t in1nOff;
+} loffstatn_t;
+
+typedef struct {
+	uint8_t gpioD;
+	uint8_t gpioC;
+} gpio_t;
+
+typedef struct {
+	uint8_t srb1;
+} misc1_t;
+
+typedef struct {
+} misc2_t;
+
+typedef struct {
+	uint8_t singleShot;
+	uint8_t pdLoffComp;
+} config4_t;
+
+typedef struct {
+    void (*DelayMs)(uint32_t delay);
+    void (*Transfer)(uint8_t tx[], uint8_t rx[], uint8_t len);
+    void (*SetCS)(uint8_t state);
+    void (*SetReset)(uint8_t state);
+    void (*SetStart)(uint8_t state);
+
+    id_t id;
+    config1_t config1;
+    config2_t config2;
+    config3_t config3;
+    loff_t loff;
+    chnset_t chnset;
+    biassensp_t biassensp;
+    biassensn_t biassensn;
+    loffsensp_t loffsensp;
+    loffsensn_t loffsensn;
+    loffflip_t loffflip;
+    loffstatp_t loffstatp;
+    loffstatn_t loffstatn;
+    gpio_t gpio;
+    misc1_t misc1;
+    misc2_t misc2;
+    config4_t config4;
+
+} ads1299_t;
+
+/* ________________________________________________________ */
+
+/* __________________ Prototypes Section __________________ */
+void ADS1299_HardReset(ads1299_t * ads1299);
+void ADS1299_Init(ads1299_t * ads1299);
+
+uint8_t ADS1299_ReadReg(ads1299_t * ads1299, uint8_t regAddress);
+void ADS1299_WriteReg(ads1299_t * ads1299, uint8_t regAddress, uint8_t data);
+
+void ADS1299_GetIdState(ads1299_t * ads1299);
+void ADS1299_GetConfig1State(ads1299_t * ads1299);
+void ADS1299_GetConfig2State(ads1299_t * ads1299);
+void ADS1299_GetConfig3State(ads1299_t * ads1299);
+void ADS1299_GetLoffState(ads1299_t * ads1299);
+void ADS1299_GetChNSetState(ads1299_t * ads1299);
+void ADS1299_GetBiasSensPState(ads1299_t * ads1299);
+void ADS1299_GetBiasSensNState(ads1299_t * ads1299);
+void ADS1299_GetLoffSensPState(ads1299_t * ads1299);
+void ADS1299_GetLoffSensNState(ads1299_t * ads1299);
+void ADS1299_GetLoffFlipState(ads1299_t * ads1299);
+void ADS1299_GetLoffStatPState(ads1299_t * ads1299);
+void ADS1299_GetLoffStatNState(ads1299_t * ads1299);
+void ADS1299_GetGpioState(ads1299_t * ads1299);
+void ADS1299_GetMisc1State(ads1299_t * ads1299);
+void ADS1299_GetMisc2State(ads1299_t * ads1299);
+void ADS1299_GetCpnfig4State(ads1299_t * ads1299);
+/* ________________________________________________________ */
 
 #endif /* DRV_ADS1299_ADS1299_H_ */
