@@ -213,15 +213,22 @@ typedef struct {
 void ADS1299_HardReset(ads1299_t * ads1299);
 void ADS1299_Init(ads1299_t * ads1299);
 
+void ADS1299_StartAdc(ads1299_t * ads1299);
+void ADS1299_StopAdc(ads1299_t * ads1299);
+uint32_t ADS1299_ReadAdc(ads1299_t * ads1299);
+void ADS1299_EnableContRead(ads1299_t * ads1299);
+void ADS1299_DisableContRead(ads1299_t * ads1299);
+
 uint8_t ADS1299_ReadReg(ads1299_t * ads1299, uint8_t regAddress);
 void ADS1299_WriteReg(ads1299_t * ads1299, uint8_t regAddress, uint8_t data);
 
+/*          Reading Register Data Functions Section          */
 void ADS1299_GetIdState(ads1299_t * ads1299);
 void ADS1299_GetConfig1State(ads1299_t * ads1299);
 void ADS1299_GetConfig2State(ads1299_t * ads1299);
 void ADS1299_GetConfig3State(ads1299_t * ads1299);
 void ADS1299_GetLoffState(ads1299_t * ads1299);
-void ADS1299_GetChNSetState(ads1299_t * ads1299);
+void ADS1299_GetChNSetState(ads1299_t * ads1299, uint8_t chRegAddress);
 void ADS1299_GetBiasSensPState(ads1299_t * ads1299);
 void ADS1299_GetBiasSensNState(ads1299_t * ads1299);
 void ADS1299_GetLoffSensPState(ads1299_t * ads1299);
@@ -233,6 +240,13 @@ void ADS1299_GetGpioState(ads1299_t * ads1299);
 void ADS1299_GetMisc1State(ads1299_t * ads1299);
 void ADS1299_GetMisc2State(ads1299_t * ads1299);
 void ADS1299_GetCpnfig4State(ads1299_t * ads1299);
+/* --------------------------------------------------------- */
+
+/*                 Parsing Functions Section                 */
+void ADS1299_ParseIdReg(ads1299_t * ads1299, uint8_t regVal);
+/* --------------------------------------------------------- */
+
+
 /* ________________________________________________________ */
 
 #endif /* DRV_ADS1299_ADS1299_H_ */
