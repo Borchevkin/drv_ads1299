@@ -74,17 +74,71 @@ typedef struct {
 } config3_t;
 
 typedef struct {
+	uint8_t singleShot;
+	uint8_t pdLoffComp;
+} config4_t;
+
+typedef struct {
 	uint8_t compTh;
 	uint8_t ileadOff;
 	uint8_t fleadOff;
 } loff_t;
 
 typedef struct {
-	uint8_t pdN;
-	uint8_t gainN;
+	uint8_t pd1;
+	uint8_t gain1;
 	uint8_t srb2;
-	uint8_t muxN;
-} chnset_t;
+	uint8_t mux1;
+} ch1set_t;
+
+typedef struct {
+	uint8_t pd2;
+	uint8_t gain2;
+	uint8_t srb2;
+	uint8_t mux2;
+} ch2set_t;
+
+typedef struct {
+	uint8_t pd3;
+	uint8_t gain3;
+	uint8_t srb2;
+	uint8_t mux3;
+} ch3set_t;
+
+typedef struct {
+	uint8_t pd4;
+	uint8_t gain4;
+	uint8_t srb2;
+	uint8_t mux4;
+} ch4set_t;
+
+typedef struct {
+	uint8_t pd5;
+	uint8_t gain5;
+	uint8_t srb2;
+	uint8_t mux5;
+} ch5set_t;
+
+typedef struct {
+	uint8_t pd6;
+	uint8_t gain6;
+	uint8_t srb2;
+	uint8_t mux6;
+} ch6set_t;
+
+typedef struct {
+	uint8_t pd7;
+	uint8_t gain7;
+	uint8_t srb2;
+	uint8_t mux7;
+} ch7set_t;
+
+typedef struct {
+	uint8_t pd8;
+	uint8_t gain8;
+	uint8_t srb2;
+	uint8_t mux8;
+} ch8set_t;
 
 typedef struct {
 	uint8_t biasP8;
@@ -176,11 +230,6 @@ typedef struct {
 } misc2_t;
 
 typedef struct {
-	uint8_t singleShot;
-	uint8_t pdLoffComp;
-} config4_t;
-
-typedef struct {
     void (*DelayMs)(uint32_t delay);
     void (*Transfer)(uint8_t tx[], uint8_t rx[], uint8_t len);
     void (*SetCS)(uint8_t state);
@@ -192,7 +241,14 @@ typedef struct {
     config2_t config2;
     config3_t config3;
     loff_t loff;
-    chnset_t chnset;
+    ch1set_t ch1set;
+    ch2set_t ch2set;
+    ch3set_t ch3set;
+    ch4set_t ch4set;
+    ch5set_t ch5set;
+    ch6set_t ch6set;
+    ch7set_t ch7set;
+    ch8set_t ch8set;
     biassensp_t biassensp;
     biassensn_t biassensn;
     loffsensp_t loffsensp;
@@ -227,8 +283,16 @@ void ADS1299_GetIdState(ads1299_t * ads1299);
 void ADS1299_GetConfig1State(ads1299_t * ads1299);
 void ADS1299_GetConfig2State(ads1299_t * ads1299);
 void ADS1299_GetConfig3State(ads1299_t * ads1299);
+void ADS1299_GetConfig4State(ads1299_t * ads1299);
 void ADS1299_GetLoffState(ads1299_t * ads1299);
-void ADS1299_GetChNSetState(ads1299_t * ads1299, uint8_t chRegAddress);
+void ADS1299_GetCh1SetState(ads1299_t * ads1299);
+void ADS1299_GetCh2SetState(ads1299_t * ads1299);
+void ADS1299_GetCh3SetState(ads1299_t * ads1299);
+void ADS1299_GetCh4SetState(ads1299_t * ads1299);
+void ADS1299_GetCh5SetState(ads1299_t * ads1299);
+void ADS1299_GetCh6SetState(ads1299_t * ads1299);
+void ADS1299_GetCh7SetState(ads1299_t * ads1299);
+void ADS1299_GetCh8SetState(ads1299_t * ads1299);
 void ADS1299_GetBiasSensPState(ads1299_t * ads1299);
 void ADS1299_GetBiasSensNState(ads1299_t * ads1299);
 void ADS1299_GetLoffSensPState(ads1299_t * ads1299);
@@ -239,11 +303,32 @@ void ADS1299_GetLoffStatNState(ads1299_t * ads1299);
 void ADS1299_GetGpioState(ads1299_t * ads1299);
 void ADS1299_GetMisc1State(ads1299_t * ads1299);
 void ADS1299_GetMisc2State(ads1299_t * ads1299);
-void ADS1299_GetCpnfig4State(ads1299_t * ads1299);
 /* --------------------------------------------------------- */
 
 /*                 Parsing Functions Section                 */
 void ADS1299_ParseIdReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseConfig1Reg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseConfig2Reg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseConfig3Reg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseConfig4Reg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseLoffReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseCh1SetReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseCh2SetReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseCh3SetReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseCh4SetReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseCh5SetReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseCh6SetReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseCh7SetReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseCh8SetReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseBiasSensPReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseBiasSensNReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseLoffSensPReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseLoffSensNReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseLoffFlipReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseLoffStatPReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseLoffStatNReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseGpioReg(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_ParseMisc1Reg(ads1299_t * ads1299, uint8_t regVal);
 /* --------------------------------------------------------- */
 
 
