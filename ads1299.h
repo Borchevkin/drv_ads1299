@@ -269,6 +269,9 @@ typedef struct {
 void ADS1299_HardReset(ads1299_t * ads1299);
 void ADS1299_Init(ads1299_t * ads1299);
 
+void ADS1299_Reset(ads1299_t * ads1299);
+void ADS1299_WakeUp(ads1299_t * ads1299);
+void ADS1299_StandBy(ads1299_t * ads1299);
 void ADS1299_StartAdc(ads1299_t * ads1299);
 void ADS1299_StopAdc(ads1299_t * ads1299);
 uint32_t ADS1299_ReadAdc(ads1299_t * ads1299);

@@ -70,6 +70,57 @@ void ADS1299_WriteReg(ads1299_t * ads1299, uint8_t regAddress, uint8_t data)
 }
 
 /*!
+\brief Function for reset.
+*/
+void ADS1299_Reset(ads1299_t * ads1299)
+{
+    uint8_t writeCmd[3] = {0};
+    uint8_t rx[3] = {0};
+
+    writeCmd[0] = ADS1299_RESET_CMD;
+    writeCmd[1] = 0x00;
+    writeCmd[2] = 0x00;
+
+    ads1299->SetCS(0);
+    ads1299->Transfer(writeCmd, rx, 3);
+    ads1299->SetCS(1);
+}
+
+/*!
+\brief Function for exit from low-power standby mode.
+*/
+void ADS1299_WakeUp(ads1299_t * ads1299)
+{
+    uint8_t writeCmd[3] = {0};
+    uint8_t rx[3] = {0};
+
+    writeCmd[0] = ADS1299_WAKEUP_CMD;
+    writeCmd[1] = 0x00;
+    writeCmd[2] = 0x00;
+
+    ads1299->SetCS(0);
+    ads1299->Transfer(writeCmd, rx, 3);
+    ads1299->SetCS(1);
+}
+
+/*!
+\brief Function for low-power standby mode.
+*/
+void ADS1299_StandBy(ads1299_t * ads1299)
+{
+    uint8_t writeCmd[3] = {0};
+    uint8_t rx[3] = {0};
+
+    writeCmd[0] = ADS1299_STANDBY_CMD;
+    writeCmd[1] = 0x00;
+    writeCmd[2] = 0x00;
+
+    ads1299->SetCS(0);
+    ads1299->Transfer(writeCmd, rx, 3);
+    ads1299->SetCS(1);
+}
+
+/*!
 \brief Function for triggering ADC conversion.
 */
 void ADS1299_StartAdc(ads1299_t * ads1299)
