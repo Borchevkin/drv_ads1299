@@ -30,6 +30,31 @@
 #define ADS1299_MISC2_REG               (0x16)
 #define ADS1299_CONFIG4_REG             (0x17)
 
+/* Register settings */
+#define ADS1299_CONFIG1_SETUP           (0x96)
+#define ADS1299_CONFIG2_SETUP           (0xC0)
+#define ADS1299_LOFF_SETUP              (0x00)
+#define ADS1299_CH1SET_SETUP            (0x61)
+#define ADS1299_CH2SET_SETUP            (0x61)
+#define ADS1299_CH3SET_SETUP            (0x61)
+#define ADS1299_CH4SET_SETUP            (0x61)
+#define ADS1299_CH5SET_SETUP            (0x61)
+#define ADS1299_CH6SET_SETUP            (0x61)
+#define ADS1299_CH7SET_SETUP            (0x61)
+#define ADS1299_CH8SET_SETUP            (0x61)
+
+#define ADS1299_CONFIG1_SETUP_DEFAULT   (0x96)
+#define ADS1299_CONFIG2_SETUP_DEFAULT   (0xC0)
+#define ADS1299_LOFF_SETUP_DEFAULT      (0x00)
+#define ADS1299_CH1SET_SETUP_DEFAULT    (0x61)
+#define ADS1299_CH2SET_SETUP_DEFAULT    (0x61)
+#define ADS1299_CH3SET_SETUP_DEFAULT    (0x61)
+#define ADS1299_CH4SET_SETUP_DEFAULT    (0x61)
+#define ADS1299_CH5SET_SETUP_DEFAULT    (0x61)
+#define ADS1299_CH6SET_SETUP_DEFAULT    (0x61)
+#define ADS1299_CH7SET_SETUP_DEFAULT    (0x61)
+#define ADS1299_CH8SET_SETUP_DEFAULT    (0x61)
+
 /* Commands */
 #define ADS1299_WAKEUP_CMD              (0x02)
 #define ADS1299_STANDBY_CMD             (0x04)
@@ -43,6 +68,7 @@
 #define ADS1299_WRITE_REG_CMD           (0x40)
 
 /* ________________________________________________________ */
+
 
 /* ____________________ Types  Section ____________________ */
 
@@ -265,6 +291,7 @@ typedef struct {
 
 /* ________________________________________________________ */
 
+
 /* __________________ Prototypes Section __________________ */
 void ADS1299_HardReset(ads1299_t * ads1299);
 void ADS1299_Init(ads1299_t * ads1299);
@@ -280,6 +307,22 @@ void ADS1299_DisableContRead(ads1299_t * ads1299);
 
 uint8_t ADS1299_ReadReg(ads1299_t * ads1299, uint8_t regAddress);
 void ADS1299_WriteReg(ads1299_t * ads1299, uint8_t regAddress, uint8_t data);
+
+
+/*          Setting Register Data Functions Section          */
+void ADS1299_SetConfig1State(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_SetConfig2State(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_SetLoffState(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_SetCh1SetState(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_SetCh2SetState(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_SetCh3SetState(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_SetCh4SetState(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_SetCh5SetState(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_SetCh6SetState(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_SetCh7SetState(ads1299_t * ads1299, uint8_t regVal);
+void ADS1299_SetCh8SetState(ads1299_t * ads1299, uint8_t regVal);
+/* --------------------------------------------------------- */
+
 
 /*          Reading Register Data Functions Section          */
 void ADS1299_GetIdState(ads1299_t * ads1299);
@@ -307,6 +350,7 @@ void ADS1299_GetGpioState(ads1299_t * ads1299);
 void ADS1299_GetMisc1State(ads1299_t * ads1299);
 void ADS1299_GetMisc2State(ads1299_t * ads1299);
 /* --------------------------------------------------------- */
+
 
 /*                 Parsing Functions Section                 */
 void ADS1299_ParseIdReg(ads1299_t * ads1299, uint8_t regVal);

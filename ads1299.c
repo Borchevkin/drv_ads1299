@@ -814,4 +814,102 @@ void ADS1299_ParseMisc1Reg(ads1299_t * ads1299, uint8_t regVal)
 
 /* -------- Setting Register Value Functions Section -------- */
 
+/*!
+\brief Function for setting Configuration 1 Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetConfig1State(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CONFIG1_REG , regVal);
+}
+
+/*!
+\brief Function for setting Configuration 2 Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetConfig2State(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CONFIG2_REG , regVal);
+}
+
+/*!
+\brief Function for setting Lead-Off Control Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetLoffState(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_LOFF_REG , regVal);
+}
+
+/*!
+\brief Function for setting Individual Channel Settings Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetCh1SetState(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CH1SET_REG , regVal);
+}
+
+/*!
+\brief Function for setting Individual Channel Settings Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetCh2SetState(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CH2SET_REG , regVal);
+}
+
+/*!
+\brief Function for setting Individual Channel Settings Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetCh3SetState(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CH3SET_REG , regVal);
+}
+
+/*!
+\brief Function for setting Individual Channel Settings Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetCh4SetState(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CH4SET_REG , regVal);
+}
+
+/*!
+\brief Function for setting Individual Channel Settings Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetCh5SetState(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CH5SET_REG , regVal);
+}
+
+/*!
+\brief Function for setting Individual Channel Settings Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetCh6SetState(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CH6SET_REG , regVal);
+}
+
+/*!
+\brief Function for setting Individual Channel Settings Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetCh7SetState(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CH7SET_REG , regVal);
+}
+
+/*!
+\brief Function for setting Individual Channel Settings Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetCh8SetState(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CH8SET_REG , regVal);
+}
 /* ---------------------------------------------------------- */
