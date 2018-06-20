@@ -31,29 +31,56 @@
 #define ADS1299_CONFIG4_REG             (0x17)
 
 /* Register settings */
-#define ADS1299_CONFIG1_SETUP           (0x96)
-#define ADS1299_CONFIG2_SETUP           (0xC0)
-#define ADS1299_LOFF_SETUP              (0x00)
-#define ADS1299_CH1SET_SETUP            (0x61)
-#define ADS1299_CH2SET_SETUP            (0x61)
-#define ADS1299_CH3SET_SETUP            (0x61)
-#define ADS1299_CH4SET_SETUP            (0x61)
-#define ADS1299_CH5SET_SETUP            (0x61)
-#define ADS1299_CH6SET_SETUP            (0x61)
-#define ADS1299_CH7SET_SETUP            (0x61)
-#define ADS1299_CH8SET_SETUP            (0x61)
+#define ADS1299_CONFIG1_SETUP_500       (0x95)    // 500 SPS
+#define ADS1299_CONFIG1_SETUP_1000      (0x94)    // 1 kSPS
+#define ADS1299_CONFIG1_SETUP_2000      (0x93)    // 2 kSPS
+#define ADS1299_CONFIG1_SETUP_4000      (0x92)    // 4 kSPS
+#define ADS1299_CONFIG1_SETUP_8000      (0x91)    // 8 kSPS
+#define ADS1299_CONFIG1_SETUP_16000     (0x90)    // 16 kSPS
+#define ADS1299_CONFIG2_SETUP_TEST      (0xD0)    // Test signals are generated internally
+#define ADS1299_CONFIG3_SETUP_REFBUF    (0xE0)    // Enable internal reference buffer
+#define ADS1299_CONFIG3_SETUP_LOFF_STAT (0x61)    // BIAS is not connected
+#define ADS1299_CONFIG4_SETUP_LOFF_C    (0x02)    // Continuous conversion mode / Lead-Off comp enabled
+#define ADS1299_CONFIG4_SETUP_LOFF_S    (0x0A)    // Single-shot mode / Lead-Off comp enabled
+#define ADS1299_CONFIG4_SETUP_LOFF_S    (0x08)    // Single-shot mode / Lead-Off comp disabled
+#define ADS1299_LOFF_SETUP_TH_92        (0x20)    // Lead-off comp threshold (positive 92.5%)
+#define ADS1299_LOFF_SETUP_TH_90        (0x40)    // Lead-off comp threshold (positive 90%)
+#define ADS1299_LOFF_SETUP_TH_87        (0x60)    // Lead-off comp threshold (positive 87%)
+#define ADS1299_LOFF_SETUP_TH_85        (0x80)    // Lead-off comp threshold (positive 85%)
+#define ADS1299_LOFF_SETUP_TH_80        (0xA0)    // Lead-off comp threshold (positive 80%)
+#define ADS1299_LOFF_SETUP_TH_75        (0xC0)    // Lead-off comp threshold (positive 75%)
+#define ADS1299_LOFF_SETUP_TH_70        (0xE0)    // Lead-off comp threshold (positive 70%)
+#define ADS1299_LOFF_SETUP_MAG_24N      (0x04)    // Lead-off curr mangnitude 24 nA
+#define ADS1299_LOFF_SETUP_MAG_6U       (0x08)    // Lead-off curr mangnitude 6 uA
+#define ADS1299_LOFF_SETUP_MAG_24U      (0x0C)    // Lead-off curr mangnitude 24 uA
+#define ADS1299_LOFF_SETUP_FREQ_7       (0x01)    // AC lead-off detection at 7.8 Hz (fCLK / 2^18)
+#define ADS1299_LOFF_SETUP_FREQ_31      (0x02)    // AC lead-off detection at 31.2 Hz (fCLK / 2^16)
+#define ADS1299_LOFF_SETUP_FREQ_DR      (0x03)    // AC lead-off detection at fDR / 4
+#define ADS1299_CH_N_SET_SETUP_PD       (0xE0)    // Channel power-down
+#define ADS1299_CH_N_SET_SETUP_GAIN_24  (0x60)    // PGA gain 24
+#define ADS1299_CH_N_SET_SETUP_GAIN_12  (0x50)    // PGA gain 12
+#define ADS1299_CH_N_SET_SETUP_GAIN_8   (0x40)    // PGA gain 8
+#define ADS1299_CH_N_SET_SETUP_GAIN_6   (0x30)    // PGA gain 6
+#define ADS1299_CH_N_SET_SETUP_GAIN_4   (0x20)    // PGA gain 4
+#define ADS1299_CH_N_SET_SETUP_GAIN_2   (0x10)    // PGA gain 2
+#define ADS1299_CH_N_SET_SETUP_GAIN_1   (0x00)    // PGA gain 1
+#define ADS1299_CH_N_SET_SETUP_SRB2_CL  (0x08)    // SRB2 Closed
+#define ADS1299_CH_N_SET_SETUP_MUX_NEI  (0x00)    // Normal electrode input
+#define ADS1299_CH_N_SET_SETUP_MUX_IS   (0x01)    // Input shorted
+#define ADS1299_CH_N_SET_SETUP_MUX_MEAS (0x02)    // Used in conjunction with BIAS_MEAS bit
+#define ADS1299_CH_N_SET_SETUP_MUX_MVDD (0x03)    // MVDD for supply measurement
+#define ADS1299_CH_N_SET_SETUP_MUX_TEMP (0x04)    // Temperature sensor
+#define ADS1299_CH_N_SET_SETUP_MUX_TEST (0x05)    // Test signal
+#define ADS1299_CH_N_SET_SETUP_MUX_DRP  (0x06)    // BIAS_DRP
+#define ADS1299_CH_N_SET_SETUP_MUX_DRN  (0x06)    // BIAS_DRN
 
 #define ADS1299_CONFIG1_SETUP_DEFAULT   (0x96)
 #define ADS1299_CONFIG2_SETUP_DEFAULT   (0xC0)
+#define ADS1299_CONFIG3_SETUP_DEFAULT   (0x60)
+#define ADS1299_CONFIG4_SETUP_DEFAULT   (0x00)
 #define ADS1299_LOFF_SETUP_DEFAULT      (0x00)
-#define ADS1299_CH1SET_SETUP_DEFAULT    (0x61)
-#define ADS1299_CH2SET_SETUP_DEFAULT    (0x61)
-#define ADS1299_CH3SET_SETUP_DEFAULT    (0x61)
-#define ADS1299_CH4SET_SETUP_DEFAULT    (0x61)
-#define ADS1299_CH5SET_SETUP_DEFAULT    (0x61)
-#define ADS1299_CH6SET_SETUP_DEFAULT    (0x61)
-#define ADS1299_CH7SET_SETUP_DEFAULT    (0x61)
-#define ADS1299_CH8SET_SETUP_DEFAULT    (0x61)
+#define ADS1299_CH_N_SET_SETUP_DEFAULT  (0x61)
+
 
 /* Commands */
 #define ADS1299_WAKEUP_CMD              (0x02)
