@@ -160,8 +160,8 @@ void ADS1299_StopAdc(ads1299_t * ads1299)
 uint32_t ADS1299_ReadAdc(ads1299_t * ads1299)
 {
     int32_t msg = 0;
-    uint8_t readCmd[7] = {0};
-    uint8_t rx[7] = {0};
+    uint8_t readCmd[29] = {0};
+    uint8_t rx[29] = {0};
 
     readCmd[0] = ADS1299_RDATA_CMD;
     readCmd[1] = 0x00;
@@ -170,9 +170,31 @@ uint32_t ADS1299_ReadAdc(ads1299_t * ads1299)
     readCmd[4] = 0x00;
     readCmd[5] = 0x00;
     readCmd[6] = 0x00;
+    readCmd[7] = 0x00;
+    readCmd[8] = 0x00;
+    readCmd[9] = 0x00;
+    readCmd[10] = 0x00;
+    readCmd[11] = 0x00;
+    readCmd[12] = 0x00;
+    readCmd[13] = 0x00;
+    readCmd[14] = 0x00;
+    readCmd[15] = 0x00;
+    readCmd[16] = 0x00;
+    readCmd[17] = 0x00;
+    readCmd[18] = 0x00;
+    readCmd[19] = 0x00;
+    readCmd[20] = 0x00;
+    readCmd[21] = 0x00;
+    readCmd[22] = 0x00;
+    readCmd[23] = 0x00;
+    readCmd[24] = 0x00;
+    readCmd[25] = 0x00;
+    readCmd[26] = 0x00;
+    readCmd[27] = 0x00;
+    readCmd[28] = 0x00;
 
     ads1299->SetCS(0);
-    ads1299->Transfer(readCmd, rx, 7);
+    ads1299->Transfer(readCmd, rx, 29);
     ads1299->SetCS(1);
 
     //TODO calculate how much data we have to receive
@@ -833,6 +855,24 @@ void ADS1299_SetConfig2State(ads1299_t * ads1299, uint8_t regVal)
 }
 
 /*!
+\brief Function for setting Configuration 3 Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetConfig3State(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CONFIG3_REG , regVal);
+}
+
+/*!
+\brief Function for setting Configuration 4 Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetConfig4State(ads1299_t * ads1299, uint8_t regVal)
+{
+    ADS1299_WriteReg(ads1299, ADS1299_CONFIG4_REG , regVal);
+}
+
+/*!
 \brief Function for setting Lead-Off Control Register value
 \param [in] regVal Value of register to set
 */
@@ -912,4 +952,23 @@ void ADS1299_SetCh8SetState(ads1299_t * ads1299, uint8_t regVal)
 {
     ADS1299_WriteReg(ads1299, ADS1299_CH8SET_REG , regVal);
 }
+
+/*!
+\brief Function for setting : Positive Signal Lead-Off Detection Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetLoffSensPState(ads1299_t * ads1299, uint8_t regVal)
+{
+	ADS1299_WriteReg(ads1299, ADS1299_LOFF_SENSP_REG, regVal);
+}
+
+/*!
+\brief Function for setting : Negative Signal Lead-Off Detection Register value
+\param [in] regVal Value of register to set
+*/
+void ADS1299_SetLoffSensNState(ads1299_t * ads1299, uint8_t regVal)
+{
+	ADS1299_WriteReg(ads1299, ADS1299_LOFF_SENSN_REG, regVal);
+}
+
 /* ---------------------------------------------------------- */
