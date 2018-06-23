@@ -295,6 +295,7 @@ typedef struct {
     void (*SetCS)(uint8_t state);
     void (*SetReset)(uint8_t state);
     void (*SetStart)(uint8_t state);
+    void (*SetPWDN)(uint8_t state);
 
     id_t id;
     config1_t config1;

@@ -17,6 +17,9 @@ void ADS1299_HardReset(ads1299_t * ads1299)
 */
 void ADS1299_Init(ads1299_t * ads1299)
 {
+	// Set PWDN inactive
+	ads1299->SetPWDN(1);
+
     ads1299->SetStart(0);
 
     // Hard reset
@@ -42,7 +45,7 @@ uint8_t ADS1299_ReadReg(ads1299_t * ads1299, uint8_t regAddress)
     readCmd[3] = 0x00;
 
     ads1299->SetCS(0);
-    ads1299->Transfer(readCmd, rx, 4);
+    ads1299->Transfer(readCmd, rx, 3);
     ads1299->SetCS(1);
 
     data = rx[2];
