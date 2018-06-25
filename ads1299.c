@@ -25,6 +25,9 @@ void ADS1299_Init(ads1299_t * ads1299)
     // Hard reset
     ADS1299_HardReset(ads1299);
 
+    // Stop Read Data Continuously mode
+    ADS1299_DisableContRead(ads1299);
+
     //TODO
 }
 
