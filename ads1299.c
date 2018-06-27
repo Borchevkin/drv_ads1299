@@ -166,8 +166,8 @@ void ADS1299_StopAdc(ads1299_t * ads1299)
 uint32_t ADS1299_ReadAdc(ads1299_t * ads1299)
 {
     int32_t msg = 0;
-    uint8_t readCmd[29] = {0};
-    uint8_t rx[29] = {0};
+    uint8_t readCmd[28] = {0};
+    uint8_t rx[28] = {0};
 
     readCmd[0] = ADS1299_RDATA_CMD;
     readCmd[1] = 0x00;
@@ -180,34 +180,29 @@ uint32_t ADS1299_ReadAdc(ads1299_t * ads1299)
     readCmd[8] = 0x00;
     readCmd[9] = 0x00;
     readCmd[10] = 0x00;
-    readCmd[11] = 0x00;
-    readCmd[12] = 0x00;
-    readCmd[13] = 0x00;
-    readCmd[14] = 0x00;
-    readCmd[15] = 0x00;
-    readCmd[16] = 0x00;
-    readCmd[17] = 0x00;
-    readCmd[18] = 0x00;
-    readCmd[19] = 0x00;
-    readCmd[20] = 0x00;
-    readCmd[21] = 0x00;
-    readCmd[22] = 0x00;
-    readCmd[23] = 0x00;
-    readCmd[24] = 0x00;
-    readCmd[25] = 0x00;
-    readCmd[26] = 0x00;
-    readCmd[27] = 0x00;
-    readCmd[28] = 0x00;
+	readCmd[11] = 0x00;
+	readCmd[12] = 0x00;
+	readCmd[13] = 0x00;
+	readCmd[14] = 0x00;
+	readCmd[15] = 0x00;
+	readCmd[16] = 0x00;
+	readCmd[17] = 0x00;
+	readCmd[18] = 0x00;
+	readCmd[19] = 0x00;
+	readCmd[20] = 0x00;
+	readCmd[21] = 0x00;
+	readCmd[22] = 0x00;
+	readCmd[23] = 0x00;
+	readCmd[24] = 0x00;
+	readCmd[25] = 0x00;
+	readCmd[26] = 0x00;
+	readCmd[27] = 0x00;
 
     ads1299->SetCS(0);
-    ads1299->Transfer(readCmd, rx, 29);
+    ads1299->Transfer(readCmd, rx, 28);
     ads1299->SetCS(1);
 
-    //TODO calculate how much data we have to receive
-    //msg |= rx[2] << 24;
-    //msg |= rx[3] << 16;
-    //msg |= rx[4] << 8;
-    //msg |= rx[5];
+    //TODO Parsing channels data in `msg` or something
 
     return msg;
 }
