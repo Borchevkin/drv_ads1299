@@ -22,7 +22,7 @@ void ADS1299_Init(ads1299_t * ads1299)
 
     ads1299->SetStart(0);
 
-    // Hard reset
+    // Hard reset (After that we have 250 SPS)
     ADS1299_HardReset(ads1299);
 
     // Stop Read Data Continuously mode
