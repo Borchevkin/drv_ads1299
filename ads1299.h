@@ -291,7 +291,7 @@ typedef struct {
 
 typedef struct {
     void (*DelayMs)(uint32_t delay);
-    void (*Transfer)(uint8_t tx[], uint8_t rx[], uint8_t len);
+    void (*Transfer)(uint8_t tx[], uint8_t rx[], uint16_t len);
     void (*SetCS)(uint8_t state);
     void (*SetReset)(uint8_t state);
     void (*SetStart)(uint8_t state);
